@@ -16,42 +16,25 @@ public class main {
 
         System.out.println("Quel système de cryptage voulez-vous utiliser ?");
         System.out.println("1- César");
-        System.out.println("2- XOR");
+        System.out.println("2- ASCII");
         String type = sc.nextLine();
 
-        if(choix.equals("1") || choix.equals("2")){
-            if(type.equals("1")||type.equals("2")){
-                if (type.equals("1") && choix.equals("1")){
-                    System.out.println("De combien voulez-vous décaler les lettres ?");
-                    int decalage = sc.nextInt();
-                    String textCrypt = Cesar.crypt(decalage,texte);
-                    System.out.println(textCrypt);
-                }if(type.equals("1") && choix.equals("2")){
-                    System.out.println("De combien ont été décalées les lettres ?");
-                    int decalage = sc.nextInt();
-                    String textDecrypt = Cesar.decrypt(decalage,texte);
-                    System.out.println(textDecrypt);
-                }if(type.equals("2") && choix.equals("1")){
-                    try {
-                        System.out.println("Quelle est la clé ?");
-                        String cle = sc.nextLine();
-                        byte[] input = texte.getBytes();
-                        byte[] key = cle.getBytes();
-                        System.out.println(trial.encode(input, key));
-                    }catch (Exception e){
-
-                    }
-                }if(type.equals("2") && choix.equals("2")){
-                    try {
-                        System.out.println("Quelle est la clé ?");
-                        String cle = sc.nextLine();
-                        byte[] key = cle.getBytes();
-                        System.out.println(trial.decode(texte, key));
-                    }catch (Exception e){
-
-                    }
-                }
-            }
+        if (type.equals("1") && choix.equals("1")){
+            System.out.println("De combien voulez-vous décaler les lettres ?");
+            int decalage = sc.nextInt();
+            String textCrypt = Cesar.crypt(decalage,texte);
+            System.out.println(textCrypt);
+        }if(type.equals("1") && choix.equals("2")){
+            System.out.println("De combien ont été décalées les lettres ?");
+            int decalage = sc.nextInt();
+            String textDecrypt = Cesar.decrypt(decalage,texte);
+            System.out.println(textDecrypt);
+        }if(type.equals("2") && choix.equals("1")){
+            System.out.println(Ascii.toString(Ascii.crypt(texte)));
+        }if(type.equals("2") && choix.equals("2")){
+            System.out.println(Ascii.toString(Ascii.decrypt(texte)));
         }
     }
+
+
 }
