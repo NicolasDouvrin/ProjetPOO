@@ -22,19 +22,19 @@ public class main {
         if (type.equals("1") && choix.equals("1")){
             System.out.println("De combien voulez-vous décaler les lettres ?");
             int decalage = sc.nextInt();
-            String textCrypt = Cesar.crypt(decalage,texte);
-            System.out.println(textCrypt);
+            Cesar cesar = new Cesar(texte,decalage);
+            System.out.println(cesar.crypt());
         }if(type.equals("1") && choix.equals("2")){
             System.out.println("De combien ont été décalées les lettres ?");
             int decalage = sc.nextInt();
-            String textDecrypt = Cesar.decrypt(decalage,texte);
-            System.out.println(textDecrypt);
+            Cesar cesar = new Cesar(texte,decalage);
+            System.out.println(cesar.decrypt());
         }if(type.equals("2") && choix.equals("1")){
-            System.out.println(Ascii.toString(Ascii.crypt(texte)));
+            Ascii ascii = new Ascii(texte);
+            System.out.println(ascii.crypt());
         }if(type.equals("2") && choix.equals("2")){
-            System.out.println(Ascii.toString(Ascii.decrypt(texte)));
+            Ascii ascii = new Ascii(texte);
+            System.out.println(ascii.decrypt());
         }
     }
-
-
 }

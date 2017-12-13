@@ -1,41 +1,35 @@
-public class Cesar {
+public class Cesar implements Mode {
     static char[] alphabet1 = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    private String s;
+    private int decal;
 
-    public static String crypt(int n, String sIn)  {
-        /*
-         * On convertit le string en un tableau de char
-         * On crée un tableau Out de même taille
-         * On prend chaque lettre du string
-         * On prend sa position actuelle dans l'alphabet
-         * On calcule sa nouvelle position en fonction de n
-         * On va chercher dans l'alphabet la lettre correspondant à la nouvelle position
-         * On assigne cette lettre dans le tableau de sortie au mm emplacement
-         * On transforme le tableau Out en un string
-         */
+    public Cesar(String s, int decal) {
+        this.s = s;
+        this.decal = decal;
+    }
 
-        char[] charSIn = sIn.toCharArray();
+    @Override
+    public String crypt() {
+        char[] charSIn = this.s.toCharArray();
         char[] charSOut = new char[charSIn.length];
         int pos1, pos2;
         for(int i = 0; i < charSIn.length; i++)   {
             pos1 = posChar(charSIn[i], alphabet1);
-            pos2 = newPos(pos1, n);
+            pos2 = newPos(pos1, this.decal);
             if(pos2 == -1) charSOut[i] = ' '; // si -1, c'est que ce n'est pas une lettre, on met un espace à la place
             else charSOut[i] = alphabet1[pos2];
         }
         return new String(charSOut); // on fait un string avec le tableau de char
     }
 
-    public static String decrypt(int n, String sIn)  {
-        /*
-         * La marche a suivre est la meme que pour le crypt sauf qu'on prend un n' = -n;
-         */
-
-        char[] charSIn = sIn.toCharArray();
+    @Override
+    public String decrypt() {
+        char[] charSIn = this.s.toCharArray();
         char[] charSOut = new char[charSIn.length];
         int pos1, pos2;
         for(int i = 0; i < charSIn.length; i++) {
             pos1 = posChar(charSIn[i], alphabet1);
-            pos2 = newPos(pos1, -n);
+            pos2 = newPos(pos1, -(this.decal));
             if(pos2 == -1) charSOut[i] = ' '; // si -1, c'est que ce n'est pas une lettre, on met un espace à la place
             else charSOut[i] = alphabet1[pos2];
         }
@@ -76,10 +70,5 @@ public class Cesar {
     public static int abs(int a)  {
         if(a >= 0) return a;
         else return -a;
-    }
-
-    public static void main(String[] args)  {
-        String t = "test de crypt";
-        System.out.println(crypt(3,t));
     }
 }
