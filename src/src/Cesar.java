@@ -13,11 +13,16 @@ public class Cesar implements Mode {
         char[] charSIn = this.s.toCharArray();
         char[] charSOut = new char[charSIn.length];
         int pos1, pos2;
-        for(int i = 0; i < charSIn.length; i++)   {
-            pos1 = posChar(charSIn[i], alphabet1);
-            pos2 = newPos(pos1, this.decal);
-            if(pos2 == -1) charSOut[i] = ' '; // si -1, c'est que ce n'est pas une lettre, on met un espace à la place
-            else charSOut[i] = alphabet1[pos2];
+        if (decal >=0) {
+            for (int i = 0; i < charSIn.length; i++) {
+                pos1 = posChar(charSIn[i], alphabet1);
+                pos2 = newPos(pos1, this.decal);
+                if (pos2 == -1)
+                    charSOut[i] = ' '; // si -1, c'est que ce n'est pas une lettre, on met un espace à la place
+                else charSOut[i] = alphabet1[pos2];
+            }
+        }else{
+            System.out.println("Valeurs négatives non prises en charge");
         }
         return new String(charSOut); // on fait un string avec le tableau de char
     }
@@ -27,11 +32,15 @@ public class Cesar implements Mode {
         char[] charSIn = this.s.toCharArray();
         char[] charSOut = new char[charSIn.length];
         int pos1, pos2;
-        for(int i = 0; i < charSIn.length; i++) {
-            pos1 = posChar(charSIn[i], alphabet1);
-            pos2 = newPos(pos1, -(this.decal));
-            if(pos2 == -1) charSOut[i] = ' '; // si -1, c'est que ce n'est pas une lettre, on met un espace à la place
-            else charSOut[i] = alphabet1[pos2];
+        if (decal >=0) {
+            for(int i = 0; i < charSIn.length; i++) {
+                pos1 = posChar(charSIn[i], alphabet1);
+                pos2 = newPos(pos1, -(this.decal));
+                if(pos2 == -1) charSOut[i] = ' '; // si -1, c'est que ce n'est pas une lettre, on met un espace à la place
+                else charSOut[i] = alphabet1[pos2];
+            }
+        }else{
+            System.out.println("Valeurs négatives non prises en charge");
         }
         return new String(charSOut); // on fait un string avec le tableau de char
     }
